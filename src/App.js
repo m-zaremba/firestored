@@ -1,24 +1,15 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+
+import { addCollectionsAndDocuments } from "./firebase/firebase.utils";
+import DATA from "./firebase.data";
 
 function App() {
+  const addData = () => addCollectionsAndDocuments("books", DATA);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <button onClick={() => addData()}>ADD DATA</button>
     </div>
   );
 }
