@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 
 import { addCollectionsAndDocuments } from "./firebase/firebase.utils";
-import DATA from "./firebase.data";
+import DATA from "./data";
 
 function App() {
   const addData = () => addCollectionsAndDocuments("books", DATA);
