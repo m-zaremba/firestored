@@ -1,17 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
+import { firestore } from "./firebase/firebase.utils";
+
+import DATA from "./data";
+import Loader from './components/loader.component';
+
 import "./App.css";
 
-import { addCollectionsAndDocuments } from "./firebase/firebase.utils";
-import DATA from "./data";
+const Firestored = () => {
+  const [loading, setLoading] = useState(false);
 
-function App() {
-  const addData = () => addCollectionsAndDocuments("books", DATA);
+  const addCollectionsAndDocuments = (collectionKey, objectsToAdd) => {
+    setLoading(true);
+
+    const collectionRef = firestore.collection(collectionKey);
+    const batch = firestore.batch();
+
+    objectsToAdd.forEach((obj) => {
+      const newDocRef = collectionRef.doc();
+      batch.set(newDocRef, obj);
+    });
+
+    batch
+      .commit()
+      .then(() => {
+        setLoading(false);
+        console.log("Data firestored successfully");
+      })
+      .catch((err) => console.log(err));
+  };
 
   return (
     <div className="App">
-      <button onClick={() => addData()}>ADD DATA</button>
+      {!loading ? (
+        <button onClick={() => addCollectionsAndDocuments("books", DATA)}>
+          ADD DATA
+        </button>
+      ) : (
+        <Loader />
+      )}
     </div>
   );
-}
+};
 
-export default App;
+export default Firestored;

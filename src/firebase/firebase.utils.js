@@ -14,19 +14,19 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 export const firestore = firebase.firestore();
 
-export const addCollectionsAndDocuments = (collectionKey, objectsToAdd) => {
-  const collectionRef = firestore.collection(collectionKey);
-  const batch = firestore.batch();
+// export const addCollectionsAndDocuments = (collectionKey, objectsToAdd) => {
+//   const collectionRef = firestore.collection(collectionKey);
+//   const batch = firestore.batch();
 
-  objectsToAdd.forEach((obj) => {
-    const newDocRef = collectionRef.doc();
-    batch.set(newDocRef, obj);
-  });
+//   objectsToAdd.forEach((obj) => {
+//     const newDocRef = collectionRef.doc();
+//     batch.set(newDocRef, obj);
+//   });
 
-  batch
-    .commit()
-    .then(() => {
-      console.log("Data firestored successfully");
-    })
-    .catch((err) => console.log(err));
-};
+//   batch
+//     .commit()
+//     .then(() => {
+//       console.log("Data firestored successfully");
+//     })
+//     .catch((err) => console.log(err));
+// };
