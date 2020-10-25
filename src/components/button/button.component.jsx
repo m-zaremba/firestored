@@ -2,10 +2,10 @@ import React from 'react'
 
 import './button.styles.css';
 
-const Button = ({action}) => {
+const Button = ({action, text}) => {
   return (
     <div className="send-button" role="button" onClick={action}>
-      add data
+      {text}
     </div>
   )
 }

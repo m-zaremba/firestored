@@ -1,0 +1,35 @@
+.config-screen_wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 10px;
+  border: solid 2px #33406F;
+  border-radius: 10px;
+}
+
+img {
+  height: 400px;
+  width: auto;
+}
+
+.form {
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+label {
+  display: block;
+  text-align: right;
+  margin: 10px 0;
+  line-height: 30px;
+}
+
+input {
+  float: right;
+  height: 30px;
+  width: 50%;
+  margin-left: 10px;
+}

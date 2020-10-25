@@ -1,7 +1,7 @@
 .App {
   margin: 0 auto;
-  padding-bottom: 40px;
-  height: 100vh;
+  padding: 20px;
+  min-height: 95vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -23,3 +23,4 @@ img {
 }
 
 /* <a href="https://www.freepik.com/vectors/cloud">Cloud vector created by stories - www.freepik.com</a> */
+/* configure firestore image: <a href='https://www.freepik.com/vectors/technology'>Technology vector created by stories - www.freepik.com</a> */
