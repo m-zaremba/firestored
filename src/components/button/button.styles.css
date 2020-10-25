@@ -1,0 +1,24 @@
+.send-button {
+  text-align: center;
+  text-transform: uppercase;
+  line-height: 38px;
+  width: 80%;
+  height: 40px;
+  background-color: #6078cf;
+  border-radius: 10px;
+  color: white;
+  box-shadow: 0px 0px #FFF;
+  transition: background-color 500ms;
+}
+
+.send-button:hover {
+  cursor: pointer;
+  background-color: #33406f;
+
+}
+
+.send-button:active {
+  box-shadow: 0px -4px #0b2685;
+  transform: translateY(4px);
+  background-color: #2499bd;
+}

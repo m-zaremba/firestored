@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import { firestore } from "./firebase/firebase.utils";
 
 import DATA from "./data";
-import Loader from './components/loader.component';
+import Loader from "./components/loader/loader.component";
 
+import logo from "./images/3411083.jpg";
 import "./App.css";
+import Button from "./components/button/button.component";
 
 const Firestored = () => {
   const [loading, setLoading] = useState(false);
@@ -32,9 +34,10 @@ const Firestored = () => {
   return (
     <div className="App">
       {!loading ? (
-        <button onClick={() => addCollectionsAndDocuments("books", DATA)}>
-          ADD DATA
-        </button>
+        <div className="content-wrapper">
+          <img src={logo} alt="" />
+          <Button action={() => addCollectionsAndDocuments("books", DATA)}/>
+        </div>
       ) : (
         <Loader />
       )}

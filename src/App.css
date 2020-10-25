@@ -1,12 +1,25 @@
 .App {
+  margin: 0 auto;
+  padding-bottom: 40px;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
 }
 
-.loader {
-  width: 100%;
-  height: 100vh;
-  background-color: black;
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 10px;
+  border: solid 2px #33406F;
+  border-radius: 10px;
 }
+
+img {
+  height: 400px;
+  width: auto;
+}
+
+/* <a href="https://www.freepik.com/vectors/cloud">Cloud vector created by stories - www.freepik.com</a> */
