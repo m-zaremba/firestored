@@ -49,7 +49,7 @@ const Loader = () => {
         </svg>
       </div>
       <div className="loader-text-wrapper">
-        <span className="loader-text">We're uploading your data so maybe a cup of tea?</span>
+        <span className="loader-text">Tea time! <br/><sub><sub>Well... for you - we're downloading your data</sub></sub></span>
       </div>
     </div>
   );
