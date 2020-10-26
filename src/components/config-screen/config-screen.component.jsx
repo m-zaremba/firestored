@@ -5,7 +5,8 @@ import { configFirebase } from "../../firebase/firebase.utils";
 import Button from "../button/button.component";
 import logo from "../../images/2828682.jpg";
 
-import './config-screen.styles.css';
+import "./config-screen.styles.css";
+import TextInput from "../text-input/text-input.component";
 
 const ConfigScreen = ({ setDbConfigured }) => {
   const [credentials, setCredentials] = useState({});
@@ -22,36 +23,19 @@ const ConfigScreen = ({ setDbConfigured }) => {
     <div className="config-screen_wrapper">
       <img src={logo} alt="graphic of people working on IT project" />
       <div className="form">
-        <label>
-          apiKey
-          <input type="text" name="apiKey" onChange={handleChange} />
-        </label>
-        <label>
-          authDomain
-          <input type="text" name="authDomain" onChange={handleChange} />
-        </label>
-        <label>
-          databaseURL
-          <input type="text" name="databaseURL" onChange={handleChange} />
-        </label>
-        <label>
-          projectId
-          <input type="text" name="projectId" onChange={handleChange} />
-        </label>
-        <label>
-          storageBucket
-          <input type="text" name="storageBucket" onChange={handleChange} />
-        </label>
-        <label>
-          messagingSenderId
-          <input type="text" name="messagingSenderId" onChange={handleChange} />
-        </label>
-        <label>
-          appId
-          <input type="text" name="appId" onChange={handleChange} />
-        </label>
+        <TextInput name="apiKey" onChange={handleChange} />
+        <TextInput name="authDomain" onChange={handleChange} />
+        <TextInput name="databaseURL" onChange={handleChange} />
+        <TextInput name="projectId" onChange={handleChange} />
+        <TextInput name="storageBucket" onChange={handleChange} />
+        <TextInput name="messagingSenderId" onChange={handleChange} />
+        <TextInput name="appId" onChange={handleChange} />
       </div>
       <Button
+        style={(Object.keys(credentials).length < 7) ? {
+          pointerEvents: "none",
+          opacity: 0.5
+        } : null} 
         action={() => {
           configFirebase(credentials) || setDbConfigured(true);
         }}

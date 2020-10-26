@@ -2,9 +2,9 @@ import React from 'react'
 
 import './button.styles.css';
 
-const Button = ({action, text}) => {
+const Button = ({action, text, style}) => {
   return (
-    <div className="send-button" role="button" onClick={action}>
+    <div className="send-button" role="button" style={style} onClick={action}>
       {text}
     </div>
   )

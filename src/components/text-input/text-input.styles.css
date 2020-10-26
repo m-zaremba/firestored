@@ -1,0 +1,13 @@
+label {
+  display: block;
+  text-align: right;
+  margin: 10px 0;
+  line-height: 30px;
+}
+
+input {
+  float: right;
+  height: 30px;
+  width: 50%;
+  margin-left: 10px;
+}
