@@ -6,10 +6,14 @@ import Button from "../button/button.component";
 import Loader from "../loader/loader.component";
 
 import DATA from "../../data";
+import ErrorIndicator from "../error-indicator/error-indicator.component";
+import SuccessIndicator from "../success-indicator/success-indicator.component";
 
 const UploadData = () => {
   const [loading, setLoading] = useState(false);
-  
+  const [error, setError] = useState(false);
+  const [success, setSuccess] = useState()
+
   const addCollectionsAndDocuments = (collectionKey, objectsToAdd) => {
     setLoading(true);
 
@@ -25,24 +29,28 @@ const UploadData = () => {
       .commit()
       .then(() => {
         setLoading(false);
+        setSuccess(true);
         console.log("Data firestored successfully");
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        setLoading(false);
+        setError(true);
+        console.log(err);
+      });
   };
 
   return (
     <>
-      {!loading ? (
-        <div className="content-wrapper">
-          <img src={logo} alt="" />
-          <Button
-            action={() => addCollectionsAndDocuments("books", DATA)}
-            text={"add data"}
-          />
-        </div>
-      ) : (
-        <Loader />
-      )}
+      {(!error && !loading && !success) && <div className="content-wrapper">
+        <img src={logo} alt="" />
+        <Button
+          action={() => addCollectionsAndDocuments("books", DATA)}
+          text={"add data"}
+        />
+      </div>}
+      {loading && <Loader />}
+      {success && <SuccessIndicator/>}
+      {error && <ErrorIndicator />}
     </>
   );
 };

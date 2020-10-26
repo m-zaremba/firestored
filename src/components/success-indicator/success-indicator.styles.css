@@ -1,0 +1,9 @@
+.success-wrapper {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: solid 2px #33406F;
+  border-radius: 10px;
+}
