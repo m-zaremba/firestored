@@ -23,3 +23,17 @@
   transform: translateY(4px);
   background-color: #2499bd;
 }
+
+.active {
+  background-color: rgb(108, 206, 108);
+  transition: width 750ms;
+  border-radius: 50%;
+  width: 40px;
+  border: solid rgb(187, 187, 187) 4px;
+}
+
+.active:hover {
+  cursor: unset;
+  background-color: rgb(108, 206, 108);
+  pointer-events: none;
+}

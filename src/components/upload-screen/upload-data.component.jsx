@@ -14,23 +14,25 @@ const UploadData = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState();
-  const [collectionName, setCollectionName] = useState('');
-  const [rawData, setRawData] = useState('');
+  const [collectionName, setCollectionName] = useState("");
+  const [rawData, setRawData] = useState("");
   const [dataToUpload, setDataToUpload] = useState(null);
 
   const onInputChange = (event) => {
-    setCollectionName(event.target.value)
-  }
+    setCollectionName(event.target.value);
+  };
 
   const handleChange = (event) => {
     setRawData(event.target.value);
-  }
+    if (dataToUpload !== null) {
+      setDataToUpload(null);
+    }
+  };
 
   const confirmDataBeforeParsing = () => {
     let parsedData = JSON.parse(rawData);
-    setDataToUpload(parsedData)
-
-  }
+    setDataToUpload(parsedData);
+  };
 
   const addCollectionsAndDocuments = (collectionKey, objectsToAdd) => {
     setLoading(true);
@@ -56,34 +58,47 @@ const UploadData = () => {
       });
   };
 
-  let allowUploadConditions = dataToUpload !== null && collectionName !== '';
-
+  let allowUploadConditions = dataToUpload !== null && collectionName !== "";
 
   return (
     <>
-      {(!error && !loading && !success) && <div className="content-wrapper">
-        <img src={logo} alt="" />
-        <TextInput name="collection title" onChange={onInputChange}/>
-        <DataInput onChange={handleChange} />
-        <Button
-          action={() => confirmDataBeforeParsing()}
-          text={"validate data"}
-          style={rawData === '' ? {
-          pointerEvents: "none",
-          opacity: 0.5
-        } : null}
-        />
-        <Button
-          action={() => addCollectionsAndDocuments(collectionName, dataToUpload)}
-          text={"add data"}
-          style={!allowUploadConditions ? {
-          pointerEvents: "none",
-          opacity: 0.5
-        } : null}
-        />
-      </div>}
+      {!error && !loading && !success && (
+        <div className="content-wrapper">
+          <img src={logo} alt="" />
+          <TextInput name="collection title" onChange={onInputChange} />
+          <DataInput dataToUpload={dataToUpload} onChange={handleChange} />
+          <Button
+            action={() => confirmDataBeforeParsing()}
+            text={dataToUpload === null ? "validate data" : "ok"}
+            style={
+              rawData === ""
+                ? {
+                    pointerEvents: "none",
+                    opacity: 0.5,
+                  }
+                : null
+            }
+            dataValidated={dataToUpload}
+            rawData={rawData}
+          />
+          <Button
+            action={() =>
+              addCollectionsAndDocuments(collectionName, dataToUpload)
+            }
+            text={"add data"}
+            style={
+              !allowUploadConditions
+                ? {
+                    pointerEvents: "none",
+                    opacity: 0.5,
+                  }
+                : null
+            }
+          />
+        </div>
+      )}
       {loading && <Loader />}
-      {success && <SuccessIndicator/>}
+      {success && <SuccessIndicator />}
       {error && <ErrorIndicator />}
     </>
   );
