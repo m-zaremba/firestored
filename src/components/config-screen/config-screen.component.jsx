@@ -32,10 +32,14 @@ const ConfigScreen = ({ setDbConfigured }) => {
         <TextInput name="appId" onChange={handleChange} />
       </div>
       <Button
-        style={(Object.keys(credentials).length < 7) ? {
-          pointerEvents: "none",
-          opacity: 0.5
-        } : null} 
+        style={
+          Object.keys(credentials).length < 7
+            ? {
+                pointerEvents: "none",
+                opacity: 0.5,
+              }
+            : null
+        }
         action={() => {
           configFirebase(credentials) || setDbConfigured(true);
         }}

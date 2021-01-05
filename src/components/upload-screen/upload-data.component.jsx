@@ -2,17 +2,19 @@ import React, { useState } from "react";
 import { firestore } from "../../firebase/firebase.utils";
 
 import logo from "../../images/3411083.jpg";
+
 import Button from "../button/button.component";
 import Loader from "../loader/loader.component";
-
-import ErrorIndicator from "../error-indicator/error-indicator.component";
-import SuccessIndicator from "../success-indicator/success-indicator.component";
+import ErrorPopup from "../error-popup/error-popup.component";
+import SuccessPopup from "../success-popup/success-popup.component";
 import TextInput from "../text-input/text-input.component";
 import DataInput from "../data-input/data-input.component";
 
 const UploadData = () => {
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
+  const [firebaseUploadError, setFirebaseUploadError] = useState(false);
+  const [dataParseError, setDataParseError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
   const [success, setSuccess] = useState();
   const [collectionName, setCollectionName] = useState("");
   const [rawData, setRawData] = useState("");
@@ -30,8 +32,15 @@ const UploadData = () => {
   };
 
   const confirmDataBeforeParsing = () => {
-    let parsedData = JSON.parse(rawData);
-    setDataToUpload(parsedData);
+    let parsedData;
+    try {
+      parsedData = JSON.parse(rawData);
+      setDataToUpload(parsedData);
+    } catch (error) {
+      setDataParseError(true);
+      setErrorMessage(error.message);
+      console.log(error.message);
+    }
   };
 
   const addCollectionsAndDocuments = (collectionKey, objectsToAdd) => {
@@ -51,10 +60,11 @@ const UploadData = () => {
         setLoading(false);
         setSuccess(true);
       })
-      .catch((err) => {
+      .catch((error) => {
         setLoading(false);
-        setError(true);
-        console.log(err.message);
+        setFirebaseUploadError(true);
+        setErrorMessage(error.message);
+        console.log(error.message);
       });
   };
 
@@ -62,7 +72,7 @@ const UploadData = () => {
 
   return (
     <>
-      {!error && !loading && !success && (
+      {!firebaseUploadError && !loading && !success && (
         <div className="content-wrapper">
           <img src={logo} alt="" />
           <TextInput name="collection title" onChange={onInputChange} />
@@ -98,8 +108,8 @@ const UploadData = () => {
         </div>
       )}
       {loading && <Loader />}
-      {success && <SuccessIndicator />}
-      {error && <ErrorIndicator />}
+      {success && <SuccessPopup />}
+      {(firebaseUploadError || dataParseError) && <ErrorPopup errorMessage={errorMessage} />}
     </>
   );
 };

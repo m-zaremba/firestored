@@ -1,8 +1,8 @@
 import React from "react";
 
-import './text-input.styles.css';
+import "./text-input.styles.css";
 
-const TextInput = ({name, onChange}) => {
+const TextInput = ({ name, onChange }) => {
   return (
     <label>
       {name}

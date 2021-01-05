@@ -6,7 +6,7 @@ import ConfigScreen from "./components/config-screen/config-screen.component";
 import UploadData from "./components/upload-screen/upload-data.component";
 
 const Firestored = () => {
-  const [dbConfigured, setDbConfigured] = useState(false);
+  const [dbConfigured, setDbConfigured] = useState(true);
 
   return (
     <div className="App">
